@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 import { urlForImage } from "@/sanity/lib/image";
 import Link from "next/link";
 import { getCourses } from "@/sanity/sanity-utils";
-import { coursesSchema } from "@/types/Courses";
+import { courseSchema } from "@/types/Courses";
 
 const CourseList = () => {
-  const [courses, setCourses] = useState<coursesSchema[]>([]);
+  const [courses, setCourses] = useState<courseSchema[]>([]);
 
   useEffect(() => {
     async function fetchCourses() {
@@ -27,8 +27,8 @@ const CourseList = () => {
         <h1>Courses we provide:</h1>
       </div>
       <div className="course-list-container">
-        {courses.map((course) => (
-          <Link href={`/course/${course.slug}`} key={course._id}>
+        {courses.map((course, i) => (
+          <Link href={`/course/${course.slug}`} key={i}>
             <div className="course-main">
               <div className="course-img">
                 <Image
@@ -45,9 +45,13 @@ const CourseList = () => {
                 <p>{course.description}</p>
               </div>
               <div className="course-info">
-                <div className="author">
-                  Created by:&nbsp;<span>{course.author.name}</span>
-                </div>
+                {course.author && (
+                  <>
+                    <div className="author">
+                      Created by:&nbsp;<span>{course.author.name}</span>
+                    </div>
+                  </>
+                )}
                 <div className="published-at">
                   Updated at:
                   <span>Date placeholder</span>

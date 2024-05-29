@@ -1,6 +1,6 @@
 import { PortableTextBlock } from "sanity";
 
-export type coursesSchema = {
+export type courseSchema = {
   _id: string;
   _createdAt: Date;
   title: string;
@@ -22,5 +22,15 @@ export type coursesSchema = {
   publishedAt: Date;
   description: string;
   body: PortableTextBlock[];
-  chapters: Array<{}>;
+  chapters: {
+    chapterNo: number;
+    chapterTitle: string;
+    chapterSlug: string;
+    video: {
+      data: {
+        duration: number;
+      }
+    };
+    body: PortableTextBlock[];
+  }[];
 };

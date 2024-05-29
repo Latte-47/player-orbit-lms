@@ -5,4 +5,86 @@
   padding: 15vh 7vw 7vh 7vw;
   font-family: $fontInterRegular;
 
+  .course-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    
+    .course-details-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .course-title-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+
+        .course-icon {
+          svg {
+            width: 3.5rem;
+            height: 3.5rem;
+          }
+        }
+
+        .course-name {
+          font-size: 2.2rem;
+          font-family: $fontInterBold;
+        }
+      }
+
+      .course-info-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .course-image {
+          position: relative;
+          width: 48%;
+          height: 25rem;
+          border: 1px solid $borderGray;
+          border-radius: 15px;
+          overflow: hidden;
+
+          img {
+            inset: 0;
+          }
+        }
+
+        .course-description-container {
+          width: 48%;
+          padding: 2.5rem;
+          border: 1px solid $accentBlue;
+          border-radius: 15px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .description-body {
+            font-size: 1.8rem;
+            font-family: $fontInterMedium;
+
+          }
+
+          .author-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-family: $fontInterMedium;
+
+            .author-name {
+              font-size: 1.4rem;
+            }
+            
+            .updated-at {
+              font-size: 1.4rem;
+            }
+
+          }
+        }
+      }
+    }
+  }
 }

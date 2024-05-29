@@ -6,7 +6,9 @@ import post from "./schemaTypes/post";
 import author from "./schemaTypes/author";
 import chapter from "./schemaTypes/chapter";
 import course from "./schemaTypes/course";
+import CourseSchema from "./schemaTypes/course";
+import chapterSchema from "./schemaTypes/chapter";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [post, author, category, blockContent, chapter, course],
+  types: [author, blockContent, CourseSchema, chapterSchema],
 };

@@ -1,32 +1,43 @@
-import { defineField, defineType } from "sanity";
+import {  defineType } from "sanity";
 
-export default defineType({
+const chapterSchema = {
   name: "chapter",
   title: "Chapter",
   type: "document",
   fields: [
-    defineField({
+    {
       name: "chapterNo",
       title: "Chapter No.",
       type: "number",
-      validation: (rule) => [
+      validation: (rule: any) => [
         rule.required().integer().positive().greaterThan(0),
       ],
-    }),
-    defineField({
-      name: "title",
+    },
+    {
+      name: "chapterTitle",
       title: "Title",
       type: "string",
-    }),
-    defineField({
+    },
+    {
+      name: "chapterSlug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "chapterTitle",
+      },
+    },
+    {
       name: "video",
       title: "Video",
       type: "mux.video",
-    }),
-    defineField({
+    },
+    {
       name: "body",
       title: "Body",
-      type: "blockContent",
-    }),
+      type: "array",
+      of: [{ type: "block" }],
+    },
   ],
-});
+};
+
+export default chapterSchema;
