@@ -8,6 +8,7 @@ export type chapterSchema = {
   chapterSlug: string;
   video: {
     playbackId: string;
+    assetID: string;
   };
   body: PortableTextBlock[];
 };

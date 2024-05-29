@@ -44,7 +44,6 @@ export async function getCourses(): Promise<courseSchema[]> {
   );
 }
 
-
 export async function getCourse(slug: string): Promise<courseSchema> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "course" && slug.current == $slug][0]{
@@ -97,6 +96,31 @@ export async function getChapter(slug: string): Promise<chapterSchema> {
           assetId,
         },
         body,
+    }`,
+    { slug }
+  );
+}
+
+export async function getCourseByChapter(slug: string) {
+  return createClient(clientConfig).fetch(
+    groq`
+    *[_type == "course" && references(*[_type=="chapter" && chapterSlug.current == $slug]._id)][0]{
+      title,
+      "slug": slug.current,
+      publishedAt,
+      "author": {
+        "name": author->name,
+      },
+      "chapters": chapters[]->{
+        _id,
+        _createdAt,
+        chapterNo,
+        chapterTitle,
+        "chapterSlug": chapterSlug.current,
+        "video": video.asset->{
+          "duration": data.duration,
+        }
+      }
     }`,
     { slug }
   );

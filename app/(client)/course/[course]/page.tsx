@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ChessKing from "@/components/client/Icons/ChessKing";
+import ArrowRight from "@/components/client/Icons/ArrowRight";
 import { PortableText } from "next-sanity";
 
 type Props = {
@@ -47,16 +48,12 @@ export default function Course({ params }: Props) {
                 />
               </div>
               <div className="course-description-container">
-                <div className="description-body">
-                  {course.description}
-                </div>
+                <div className="description-body">{course.description}</div>
                 <div className="author-container">
                   <div className="author-name">
                     Created by: {course.author.name}
                   </div>
-                  <div className="updated-at">
-                    Created on: Date placeholder
-                  </div>
+                  <div className="updated-at">Created on: {new Date(course.publishedAt).toLocaleDateString("en-GB")}</div>
                 </div>
               </div>
             </div>
@@ -65,14 +62,27 @@ export default function Course({ params }: Props) {
             </div>
           </div>
           <div className="chapter-list-container">
-            <div className="chapter-heading">Chapters</div>
-            <div>
+            <div className="chapter-heading">
+              <div className="chapter-heading-icon">
+                <ArrowRight />
+              </div>
+              <div className="chapter-heading-text">Chapters</div>
+            </div>
+            <div className="chapter-list-main">
               {course.chapters?.map((chapter, i) => (
                 <Link
                   href={`/course/${course.slug}/${chapter.chapterSlug}`}
                   key={i}
                 >
-                  <div>{chapter.chapterTitle}</div>
+                  <div className="chapter-main">
+                    <div className="chapter-number">{chapter.chapterNo}</div>
+                    <div className="chapter-title">{chapter.chapterTitle}</div>
+                    <div className="chapter-duration">
+                      {`${chapter.video.duration}`
+                        .slice(0, -4)
+                        .replace(".", ":")}
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>

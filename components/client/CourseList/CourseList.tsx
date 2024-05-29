@@ -54,9 +54,8 @@ const CourseList = () => {
                 )}
                 <div className="published-at">
                   Updated at:
-                  <span>Date placeholder</span>
+                  <span>{new Date(course.publishedAt).toLocaleDateString("en-GB")}</span>
                 </div>
-                {/* <div className="go-to">Go to course</div> */}
               </div>
             </div>
           </Link>

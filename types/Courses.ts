@@ -27,9 +27,7 @@ export type courseSchema = {
     chapterTitle: string;
     chapterSlug: string;
     video: {
-      data: {
-        duration: number;
-      }
+      duration: string;
     };
     body: PortableTextBlock[];
   }[];
