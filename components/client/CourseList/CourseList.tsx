@@ -26,40 +26,42 @@ const CourseList = () => {
       <div className="heading">
         <h1>Courses we provide:</h1>
       </div>
-      <div className="course-list-container">
-        {courses.map((course, i) => (
-          <Link href={`/course/${course.slug}`} key={i}>
-            <div className="course-main">
-              <div className="course-img">
-                <Image
-                  src={course.image.url}
-                  alt={course.title}
-                  style={{ objectFit: "cover" }}
-                  fill
-                />
-              </div>
-              <div className="course-title">
-                <h2>{course.title}</h2>
-              </div>
-              <div className="course-description">
-                <p>{course.description}</p>
-              </div>
-              <div className="course-info">
-                {course.author && (
-                  <>
-                    <div className="author">
-                      Created by:&nbsp;<span>{course.author.name}</span>
-                    </div>
-                  </>
-                )}
-                <div className="published-at">
-                  Updated at:
-                  <span>{new Date(course.publishedAt).toLocaleDateString("en-GB")}</span>
+      <div className="course-list-container-wrap">
+        <div className="course-list-container">
+          {courses.map((course, i) => (
+            <Link href={`/course/${course.slug}`} key={i}>
+              <div className="course-main">
+                <div className="course-img">
+                  <Image
+                    src={course.image.url}
+                    alt={course.title}
+                    style={{ objectFit: "cover" }}
+                    fill
+                  />
+                </div>
+                <div className="course-title">
+                  <h2>{course.title}</h2>
+                </div>
+                <div className="course-description">
+                  <p>{course.description}</p>
+                </div>
+                <div className="course-info">
+                  {course.author && (
+                    <>
+                      <div className="author">
+                        Created by:&nbsp;<span>{course.author.name}</span>
+                      </div>
+                    </>
+                  )}
+                  <div className="published-at">
+                    Updated at:
+                    <span>{new Date(course.publishedAt).toLocaleDateString("en-GB")}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

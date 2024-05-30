@@ -76,8 +76,10 @@ export default function ChapterPage({ params }: Props) {
                   <div className="chapter-number">{chapter.chapterNo}</div>
                   <div className="chapter-title">{chapter.chapterTitle}</div>
                 </div>
-                <div className="chapter-video">
-                  <MuxPlayer playbackId={chapter.video.playbackId} />
+                <div className="chapter-video-container">
+                  <div className="chapter-video">
+                    <MuxPlayer playbackId={chapter.video.playbackId} />
+                  </div>
                 </div>
                 <div className="chapter-body">
                   <div className="chapter-body-text">
@@ -85,9 +87,10 @@ export default function ChapterPage({ params }: Props) {
                   </div>
                   <div className="course-author-container">
                     <div className="course-author-name">
-                      {courseByChapter.author.name}
+                      Created by: {courseByChapter.author.name}
                     </div>
                     <div className="course-publishedAt">
+                      Updated on:{" "}
                       {new Date(courseByChapter.publishedAt).toLocaleDateString(
                         "en-GB"
                       )}
@@ -103,7 +106,7 @@ export default function ChapterPage({ params }: Props) {
                   const isCurrentChapter =
                     listChapter.chapterSlug === chapter.chapterSlug;
                   const hrefValue = `/course/${courseByChapter.slug}/${listChapter.chapterSlug}`;
-                  console.log(hrefValue)
+                  console.log(hrefValue);
                   return (
                     <Link
                       href={hrefValue}
@@ -114,14 +117,20 @@ export default function ChapterPage({ params }: Props) {
                           : "chapter-list-item"
                       }
                     >
-                      <div className="chapter-list-item-icon">
-                        <ArrowRight />
-                      </div>
-                      <div className="chapter-list-item-title">{`${listChapter.chapterNo}. ${listChapter.chapterTitle}`}</div>
-                      <div className="chapter-list-item-duration">
-                        {`${listChapter.video.duration}`
-                          .slice(0, -4)
-                          .replace(".", ":")}
+                      <div className="chapter-list-item-container">
+                        <div className="chapter-list-item-icon">
+                          <ArrowRight />
+                        </div>
+                        <div className="chapter-list-item-title">{`${listChapter.chapterNo}. ${listChapter.chapterTitle}`}</div>
+                        <div className="chapter-list-item-duration">
+                        {`${listChapter.video.duration}`.length > 5
+                        ? `${listChapter.video.duration}`
+                            .slice(0, -4)
+                            .replace(".", ":")
+                        : `${listChapter.video.duration}`.length < 3
+                          ? `${listChapter.video.duration}:00`
+                          : listChapter.video.duration}
+                        </div>
                       </div>
                     </Link>
                   );

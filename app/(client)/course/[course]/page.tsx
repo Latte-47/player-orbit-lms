@@ -53,7 +53,10 @@ export default function Course({ params }: Props) {
                   <div className="author-name">
                     Created by: {course.author.name}
                   </div>
-                  <div className="updated-at">Created on: {new Date(course.publishedAt).toLocaleDateString("en-GB")}</div>
+                  <div className="updated-at">
+                    Created on:{" "}
+                    {new Date(course.publishedAt).toLocaleDateString("en-GB")}
+                  </div>
                 </div>
               </div>
             </div>
@@ -78,9 +81,13 @@ export default function Course({ params }: Props) {
                     <div className="chapter-number">{chapter.chapterNo}</div>
                     <div className="chapter-title">{chapter.chapterTitle}</div>
                     <div className="chapter-duration">
-                      {`${chapter.video.duration}`
-                        .slice(0, -4)
-                        .replace(".", ":")}
+                      {`${chapter.video.duration}`.length > 5
+                        ? `${chapter.video.duration}`
+                            .slice(0, -4)
+                            .replace(".", ":")
+                        : `${chapter.video.duration}`.length < 3
+                          ? `${chapter.video.duration}:00`
+                          : chapter.video.duration}
                     </div>
                   </div>
                 </Link>

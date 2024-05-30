@@ -2,7 +2,7 @@
 
 #course-section {
   width: 100vw;
-  padding: 14vh 7vw 4vh 7vw;
+  padding: 13vh 7vw 3vh 7vw;
   font-family: $fontInterRegular;
 
   .course-container {
@@ -110,6 +110,7 @@
           svg {
             width: 2.5rem;
             height: 2.5rem;
+            fill: white;
           }
         }
 
@@ -174,11 +175,11 @@
           &:hover {
 
             .chapter-main {
-              background-color: $accentBlue;
-              color: white;
+              background-color: $accentLightBlue;
+              color: $textBlack;
 
               .chapter-number {
-                border-color: white;
+                border-color: $accentBlue;
               }
             }
           }
